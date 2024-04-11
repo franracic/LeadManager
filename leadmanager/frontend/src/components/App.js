@@ -11,17 +11,17 @@ import PrivateRoute from "./common/PrivateRoute";
 import Data from "./data/Data";
 import Alerts from "./layout/Alerts";
 import Footer from "./layout/Footer";
-import Header from "./layout/header";
+import Header from "./layout/Header";
 import Admin from "./leads/Admin";
 
 import { Provider } from "react-redux";
 import { loadUser } from "../actions/auth";
 import store from "../store";
+import Landing from "./landingPage/Landing";
 import dashboard from "./leads/Dashboard";
 import Leads from "./leads/Leads";
 import AdminMessages from "./messages/AdminMessages";
 
-// Oprezi
 const alertOptions = {
   timeout: 3000,
   position: "top center",
@@ -42,9 +42,10 @@ class App extends Component {
               <Alerts />
               <div className="">
                 <Routes>
+                  <Route exact path="/" Component={Landing} />
                   <Route
                     exact
-                    path="/"
+                    path="/project"
                     element={
                       <PrivateRoute Component={Leads} ComponentAdmin={Admin} />
                     }
