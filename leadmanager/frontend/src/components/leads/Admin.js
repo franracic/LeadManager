@@ -4,7 +4,6 @@ import AdminLeads from "./AdminLeads";
 export default function Admin() {
   return (
     <Fragment>
-      
       <AdminForm />
       <AdminLeads />
     </Fragment>

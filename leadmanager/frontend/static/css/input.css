@@ -10,3 +10,38 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
+
+.text-primary {
+  color: #048368;
+}
+
+.bg-primary {
+  background-color: #048368;
+}
+
+.text-dark {
+  color: #131316;
+}
+
+textarea:focus {
+  outline: none;
+  border: none;
+}
+
+.corner-circle {
+  background: radial-gradient(circle at -100%, #048368, #131316 75%);
+  animation: Pulse 10s ease-in-out infinite alternate;
+}
+.right-corner-circle {
+  background: radial-gradient(circle at 100%, #004ac1, #131316 75%);
+  animation: Pulse 15s ease-in-out infinite alternate;
+}
+
+@keyframes Pulse {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(2);
+  }
+}

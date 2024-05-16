@@ -1,45 +1,91 @@
-import React from "react";
-
+import React, { useState } from "react";
+const Products = [
+  "Web Development",
+  "App Development",
+  "UX/UI Design",
+  "Branding",
+  "Site from scratch",
+  "App from scratch",
+  "Maintenance",
+];
 const Header = () => {
+  const [selectedInterest, setSelectedInterest] = useState([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [about, setAbout] = useState("");
+  const [honeypot, setHoneypot] = useState("");
+  const [error, setError] = useState("");
+
+  const handleInterestClick = (interest) => {
+    if (selectedInterest.includes(interest)) {
+      setSelectedInterest(selectedInterest.filter((item) => item !== interest));
+    } else {
+      setSelectedInterest([...selectedInterest, interest]);
+    }
+  };
+  const validateForm = () => {
+    if (!name || !email || !about) {
+      setError("All fields are required");
+      return false;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address");
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (honeypot) {
+      return;
+    }
+    if (validateForm()) {
+      const formData = { name, email, about, selectedInterest };
+      console.log(formData);
+      setName("");
+      setEmail("");
+      setAbout("");
+      setSelectedInterest([]);
+      setError("");
+    }
+  };
   return (
     <div className="items-end flex fixed z-50 inset-0 flex-col backdrop-blur-sm grow overflow-x-hidden overflow-y-auto">
       <div className="max-w-4xl w-full bg-white grow flex-col flex transform duration-300">
         <div className="px-11 py-12 grow flex-col flex">
           <h2 className="text-6xl max-w-sm">Hey! Tell us all the things</h2>
-          <form className="mt-10 grow flex-col flex">
+          <form className="mt-10 grow flex-col flex" onSubmit={handleSubmit}>
             <div className="justify-between flex">
               <div className="w-96">
-                <div data-error="false" className="w-full flex flex-col">
-                  <header data-className="head" className="mb-4">
-                    <h3 data-className="title">Name</h3>
+                <div className="w-full flex flex-col">
+                  <header className="mb-4">
+                    <h3>Name</h3>
                   </header>
-                  <div
-                    data-className="field"
-                    className="rounded-md bg-slate-100 flex flex-col"
-                  >
+                  <div className="rounded-md bg-slate-100 flex flex-col">
                     <input
                       className="px-4 min-h-14 bg-transparent outline-0 resize-none"
                       name="nameOrCompany"
                       placeholder="Fran Račić"
-                      value=""
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </div>
                 </div>
               </div>
               <div className="w-96">
-                <div data-error="false" className="w-full flex flex-col">
-                  <header data-className="head" className="mb-4">
-                    <h3 data-className="title">Your Email</h3>
+                <div className="w-full flex flex-col">
+                  <header className="mb-4">
+                    <h3>Your Email</h3>
                   </header>
-                  <div
-                    data-className="field"
-                    className="rounded-md bg-slate-100 flex flex-col"
-                  >
+                  <div className="rounded-md bg-slate-100 flex flex-col">
                     <input
                       className="px-4 min-h-14 bg-transparent outline-0 resize-none"
                       name="email"
                       placeholder="fran.racic@gmail.com"
-                      value=""
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                 </div>
@@ -48,45 +94,45 @@ const Header = () => {
             <div className="mt-10">
               <h3 className="mb-4">I'm interested in...</h3>
               <ul className="flex-wrap flex ps-0">
-                <li className="mx-2 my-2 px-4 py-3 border-2 cursor-pointer rounded-lg">
-                  <p>Web Development</p>
-                </li>
-                <li className="mx-2 my-2 px-4 py-3 border-2 cursor-pointer rounded-lg">
-                  <p>App Development</p>
-                </li>
-                <li className="mx-2 my-2 px-4 py-3 border-2 cursor-pointer rounded-lg">
-                  <p>UX/UI Design</p>
-                </li>
-                <li className="mx-2 my-2 px-4 py-3 border-2 cursor-pointer rounded-lg">
-                  <p>Branding</p>
-                </li>
-                <li className="mx-2 my-2 px-4 py-3 border-2 cursor-pointer rounded-lg">
-                  <p>Site from scratch</p>
-                </li>
-                <li className="mx-2 my-2 px-4 py-3 border-2 cursor-pointer rounded-lg">
-                  <p>App from scratch</p>
-                </li>
-                <li className="mx-2 my-2 px-4 py-3 border-2 cursor-pointer rounded-lg">
-                  <p>Maintenance</p>
-                </li>
+                {Products.map((product) => (
+                  <li
+                    key={product}
+                    className={
+                      "mx-2 my-2 px-4 py-3 border-2 cursor-pointer rounded-lg"
+                    }
+                    style={{
+                      borderColor: selectedInterest.includes(product)
+                        ? "#048368"
+                        : "",
+                    }}
+                    onClick={() => handleInterestClick(product)}
+                  >
+                    <p>{product}</p>
+                  </li>
+                ))}
               </ul>
             </div>
-            <div data-error="false" className="mt-10 grow flex-col flex">
-              <header data-className="head" className="mb-4">
-                <h3 data-className="title">Tell us more about your project</h3>
+            <div className="mt-10 grow flex-col flex">
+              <header className="mb-4">
+                <h3>Tell us more about your project</h3>
               </header>
-              <div
-                data-className="field"
-                className="cursor-text grow items-start flex rounded-md bg-slate-100"
-              >
+              <div className="cursor-text grow items-start flex rounded-md bg-slate-100">
                 <textarea
-                  className="p-4 grow min-h-14 bg-transparent outline-0 resize-none flex flex-col border-0"
+                  className="p-4 grow min-h-14 bg-transparent outline-0 resize-none flex flex-col border-0 focus:ring-0 h-full"
                   name="about"
                   placeholder="Something about your great idea"
-                  style={{ height: "90px" }}
+                  value={about}
+                  onChange={(e) => setAbout(e.target.value)}
                 ></textarea>
               </div>
             </div>
+            <input
+              type="text"
+              name="honeypot"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              style={{ display: "none" }}
+            />
             <div className="pt-6 flex items-center justify-between">
               <p className="text-slate-300">
                 My Email{" "}
@@ -94,6 +140,8 @@ const Header = () => {
                   <u>fran.racic@gmail.com</u>
                 </a>
               </p>
+
+              {error && <p className="text-red-500">{error}</p>}
               <button
                 type="submit"
                 className="flex items-center py-3 px-6 rounded-3xl overflow-hidden"

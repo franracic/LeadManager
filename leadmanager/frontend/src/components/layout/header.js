@@ -231,7 +231,7 @@ const Header = ({ auth, logout }) => {
   );
 
   return (
-    <>
+    <div className="absolute z-50 w-full justify-between">
       {isAuthenticated ? authLinks : guestLinks}
       {isContactOpen && (
         <>
@@ -257,7 +257,7 @@ const Header = ({ auth, logout }) => {
           </button>
         </>
       )}
-    </>
+    </div>
   );
 };
 
