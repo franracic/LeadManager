@@ -3,19 +3,13 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../actions/auth";
-import Contact from "../contact/Contact";
 
 const Header = ({ auth, logout }) => {
   const { isAuthenticated, user } = auth;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isContactOpen, setIsContactOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  const toggleContact = () => {
-    setIsContactOpen(!isContactOpen);
   };
 
   const authLinks = (
@@ -144,14 +138,6 @@ const Header = ({ auth, logout }) => {
               Data
             </Link>
           </li>
-          <li>
-            <button
-              onClick={toggleContact}
-              className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-            >
-              + Become a Client
-            </button>
-          </li>
         </ul>
       </div>
     </div>
@@ -231,32 +217,8 @@ const Header = ({ auth, logout }) => {
   );
 
   return (
-    <div className="absolute z-50 w-full justify-between">
+    <div className="absolute z-10 w-full justify-between">
       {isAuthenticated ? authLinks : guestLinks}
-      {isContactOpen && (
-        <>
-          <Contact />
-          <button
-            className="absolute top-8 end-10 z-50 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
-            onClick={toggleContact}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18 18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </>
-      )}
     </div>
   );
 };

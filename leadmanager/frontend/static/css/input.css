@@ -18,7 +18,9 @@ body::-webkit-scrollbar {
 .bg-primary {
   background-color: #048368;
 }
-
+.border-primary {
+  border-color: #048368;
+}
 .text-dark {
   color: #131316;
 }
@@ -27,7 +29,6 @@ textarea:focus {
   outline: none;
   border: none;
 }
-
 .corner-circle {
   background: radial-gradient(circle at -100%, #048368, #131316 75%);
   animation: Pulse 10s ease-in-out infinite alternate;

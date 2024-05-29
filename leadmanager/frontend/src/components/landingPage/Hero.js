@@ -1,6 +1,9 @@
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import React from "react";
 import About from "./About";
+import HeroHeader from "./HeroHeader";
+import Masonry from "./Masonry";
+import Navs from "./Navs";
 import Offer from "./Offer";
 import Popup from "./Popup";
 import Portfoliosec from "./Portfoliosec";
@@ -8,7 +11,8 @@ import Team from "./Team";
 
 export default function Hero() {
   return (
-    <div className="py-0 relative">
+    <div className="py-0 relative z-20 w-full">
+      <HeroHeader />
       <div
         className="w-full overflow-hidden"
         style={{
@@ -130,6 +134,8 @@ export default function Hero() {
             <Offer />
 
             <div className="right-corner-circle h-1/6 w-1/5 fixed -right-96 -z-50"></div>
+            <Navs />
+            <Masonry />
             <Popup />
             <Portfoliosec />
             <Team />

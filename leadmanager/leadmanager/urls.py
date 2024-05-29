@@ -8,4 +8,5 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('', include('chat.urls')),
     path('', include('data.urls')),
+    path('', include('contact.urls')),
 ]

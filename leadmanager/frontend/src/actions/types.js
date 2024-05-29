@@ -16,3 +16,4 @@ export const CHANGE_LEAD = 'CHANGE_LEAD';
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const GET_DATA = 'GET_DATA';
+export const ADD_CONTACT = 'ADD_CONTACT';

@@ -25,51 +25,107 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <div className="w-full max-w-md p-4 0 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-      <form onSubmit={onSubmit} className="space-y-6">
-        <div>
-          <label className="text-xl font-medium text-gray-900 dark:text-white">
-            Username
-          </label>
-          <input
-            type="text"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-            name="username"
-            onChange={onChange}
-            value={username}
-          />
+    <main>
+      <section className="absolute w-full h-full">
+        <div
+          className="absolute top-0 w-full h-full bg-gray-900"
+          style={{
+            backgroundSize: "100%",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
+        <div className="container mx-auto px-4 h-full">
+          <div className="flex content-center items-center justify-center h-full">
+            <div className="w-full lg:w-4/12 px-4">
+              <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0">
+                <div className="rounded-t mb-0 px-6 py-6">
+                  <div className="text-center mb-3">
+                    <h6 className="text-gray-600 text-sm font-bold">
+                      Sign in with
+                    </h6>
+                  </div>
+                  <div className="btn-wrapper text-center">
+                    <button
+                      className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
+                      type="button"
+                      style={{ transition: "all .15s ease" }}
+                    >
+                      <img className="w-5 mr-1" />
+                      Github
+                    </button>
+                    <button
+                      className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
+                      type="button"
+                      style={{ transition: "all .15s ease" }}
+                    >
+                      <img className="w-5 mr-1" />
+                      Google
+                    </button>
+                  </div>
+                  <hr className="mt-6 border-b-1 border-gray-400" />
+                </div>
+                <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
+                  <div className="text-gray-500 text-center mb-3 font-bold">
+                    <small>Or sign in with credentials</small>
+                  </div>
+                  <form onSubmit={onSubmit}>
+                    <div className="relative w-full mb-3">
+                      <label className="block uppercase text-gray-700 text-xs font-bold mb-2">
+                        Username
+                      </label>
+                      <input
+                        type="text"
+                        name="username"
+                        onChange={onChange}
+                        value={username}
+                        className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        style={{ transition: "all .15s ease" }}
+                      />
+                    </div>
+
+                    <div className="relative w-full mb-3">
+                      <label className="block uppercase text-gray-700 text-xs font-bold mb-2">
+                        Password
+                      </label>
+                      <input
+                        type="password"
+                        name="password"
+                        onChange={onChange}
+                        value={password}
+                        className="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        style={{ transition: "all .15s ease" }}
+                      />
+                    </div>
+                    <div className="text-center mt-6">
+                      <button
+                        className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                        type="submit"
+                        style={{ transition: "all .15s ease" }}
+                      >
+                        Sign In
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <div className="flex flex-wrap mb-8">
+                  <div className="w-1/2 text-right">
+                    <p className="text-sm font-medium text-gray-500 dark:text-gray-300">
+                      Don't have an account?{" "}
+                      <Link
+                        to="/register"
+                        className="text-blue-700 hover:underline dark:text-blue-500"
+                      >
+                        Register
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="form-group">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            Password
-          </label>
-          <input
-            type="password"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-            name="password"
-            onChange={onChange}
-            value={password}
-          />
-        </div>
-        <div className="form-group">
-          <button
-            type="submit"
-            className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Login
-          </button>
-        </div>
-        <p className="text-sm font-medium text-gray-500 dark:text-gray-300">
-          Don't have an account?{" "}
-          <Link
-            to="/register"
-            className="text-blue-700 hover:underline dark:text-blue-500"
-          >
-            Register
-          </Link>
-        </p>
-      </form>
-    </div>
+      </section>
+    </main>
   );
 };
 

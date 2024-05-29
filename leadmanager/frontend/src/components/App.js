@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
 
 import { Provider as AlertProvider } from "react-alert";
@@ -11,16 +11,17 @@ import PrivateRoute from "./common/PrivateRoute";
 import Data from "./data/Data";
 import Alerts from "./layout/Alerts";
 import Footer from "./layout/Footer";
-import Header from "./layout/Header";
-import Admin from "./leads/Admin";
 
 import { Provider } from "react-redux";
-import { loadUser } from "../actions/auth";
 import store from "../store";
+import NewData from "./data/NewData";
 import Hero from "./landingPage/Hero";
+import NewHeader from "./layout/NewHeader";
 import dashboard from "./leads/Dashboard";
-import Leads from "./leads/Leads";
+import NewAdmin from "./home/NewAdmin";
+import NewAdminLeads from "./leads/NewAdminLeads";
 import AdminMessages from "./messages/AdminMessages";
+import Profile from "./team/Profile";
 
 const alertOptions = {
   timeout: 3000,
@@ -28,16 +29,12 @@ const alertOptions = {
 };
 
 function App() {
-  const isHomePage = false;
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
   return (
     <Provider store={store}>
       <AlertProvider template={AlertTemplate} {...alertOptions}>
         <Router>
-          <Fragment>
-            {!isHomePage && <Header />}
+          <div className="flex">
+            <NewHeader />
             <Alerts />
             <Routes>
               <Route exact path="/" Component={Hero} />
@@ -45,7 +42,10 @@ function App() {
                 exact
                 path="/project"
                 element={
-                  <PrivateRoute Component={Leads} ComponentAdmin={Admin} />
+                  <PrivateRoute
+                    Component={NewAdmin}
+                    ComponentAdmin={NewAdminLeads}
+                  />
                 }
               />
               <Route
@@ -62,14 +62,16 @@ function App() {
                 exact
                 path="/data"
                 element={
-                  <PrivateRoute Component={Data} ComponentAdmin={Data} />
+                  <PrivateRoute Component={Data} ComponentAdmin={NewData} />
                 }
               />
+              <Route exact path="/home" Component={NewAdmin} />
               <Route exact path="/register" Component={Register} />
               <Route exact path="/login" Component={Login} />
+              <Route exact path="/kivi" Component={Profile} />
             </Routes>
-            {!isHomePage && <Footer />}
-          </Fragment>
+            <Footer />
+          </div>
         </Router>
       </AlertProvider>
     </Provider>
