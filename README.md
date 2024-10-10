@@ -12,11 +12,3 @@ This is a comprehensive project management and analytics platform designed to im
 ## Tech Stack
 - **Frontend**: React, Redux, Next.js
 - **Backend**: Django, REST framework
-- **Database**: PostgreSQL
-- **APIs**: Google Analytics API
-- **Other Tools**: Docker, GCP, CI/CD pipeline for continuous integration and deployment.
-
-## How to Run
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/FranRacic/project-management-analytics.git
